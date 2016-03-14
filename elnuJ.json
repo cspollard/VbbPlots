@@ -1,0 +1,19 @@
+{
+    "datasetsfile" : "1lepinfiles.txt",
+    "tree_name" : "nominal",
+    "weight_tree_name" : "sumWeights",
+    "friend_tree_names" : [],
+    "cutflow" : "elnuJ/cutflow_mc_pu_zvtx",
+    "weight" : "weight_mc*weight_pileup*weight_leptonSF",
+    "cuts" : {
+        "elnuJ" : "elnuJ",
+        "ljetPt300" : "ljet_pt[0] > 300000",
+
+        "elnuJ300" : ["elnuJ", "ljetPt300"]
+    },
+
+    "runs" : [
+        ["elnuJ.root", "elnuJ"],
+        ["elnuJ300.root", "elnuJ300"]
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "datasetsfile" : "2lepinfiles.txt",
+    "tree_name" : "nominal",
+    "weight_tree_name" : "sumWeights",
+    "friend_tree_names" : [],
+    "cutflow" : "mumuJ/cutflow_mc_pu_zvtx",
+    "weight" : "weight_mc*weight_pileup*weight_leptonSF",
+    "cuts" : {
+        "mumuJ" : "mumuJ",
+        "ljetPt300" : "ljet_pt[0] > 300000",
+
+        "mumuJ300" : ["mumuJ", "ljetPt300"]
+    },
+
+    "runs" : [
+        ["mumuJ.root", "mumuJ"],
+        ["mumuJ300.root", "mumuJ300"]
+    ]
+}

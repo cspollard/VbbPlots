@@ -1,0 +1,19 @@
+{
+    "datasetsfile" : "1lepinfiles.txt",
+    "tree_name" : "nominal",
+    "weight_tree_name" : "sumWeights",
+    "friend_tree_names" : [],
+    "cutflow" : "munuJ/cutflow_mc_pu_zvtx",
+    "weight" : "weight_mc*weight_pileup*weight_leptonSF",
+    "cuts" : {
+        "munuJ" : "munuJ",
+        "ljetPt300" : "ljet_pt[0] > 300000",
+
+        "munuJ300" : ["munuJ", "ljetPt300"]
+    },
+
+    "runs" : [
+        ["munuJ.root", "munuJ"],
+        ["munuJ300.root", "munuJ300"]
+    ]
+}
