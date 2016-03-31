@@ -7,13 +7,15 @@
     "weight" : "weight_mc*weight_pileup*weight_leptonSF",
     "cuts" : {
         "elelJ" : "elelJ",
+        "trigMatch" : "(el_trigMatch_HLT_e60_lhmedium[0] || el_trigMatch_HLT_e24_lhmedium_L1EM18VH[0] || el_trigMatch_HLT_e120_lhloose[0] || el_trigMatch_HLT_e60_lhmedium[1] || el_trigMatch_HLT_e24_lhmedium_L1EM18VH[1] || el_trigMatch_HLT_e120_lhloose[1])",
         "ljetPt300" : "ljet_pt[0] > 300000",
 
-        "elelJ300" : ["elelJ", "ljetPt300"]
+        "elelJTrigMatch300" : ["elelJ", "trigMatch", "ljetPt300"],
+        "elelJTrigMatch" : ["elelJ", "trigMatch"]
     },
 
     "runs" : [
-        ["elelJ.root", "elelJ"],
-        ["elelJ300.root", "elelJ300"]
+        ["elelJ.root", "elelJTrigMatch"],
+        ["elelJ300.root", "elelJTrigMatch300"]
     ]
 }

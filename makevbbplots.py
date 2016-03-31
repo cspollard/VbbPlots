@@ -65,15 +65,17 @@ def main(myargv):
             print "ERROR: unable to open input file %s. Exiting." % filename
             exit(-1)
 
-        tree = f.Get(dconfig["tree_name"])
-        if not tree:
+        tweights = f.Get("sumWeights")
+        tweights = f.Get(dconfig["weight_tree_name"])
+        if not tweights:
             f.Close()
             continue
 
-        tree.GetEntry(0)
+
+        tweights.GetEntry(0)
 
         # data dsid should be zero.
-        dsid = tree.mcChannelNumber
+        dsid = tweights.dsid
         print "file dsid:", dsid
 
         f.Close()
@@ -90,13 +92,10 @@ def main(myargv):
     data_samps = []
 
     for dsid, fnames in filesdict.items():
-        datasetname = fnames[0].split('/')[-2]
 
-        print "looking at dataset:"
-        print datasetname
-        print "with dsid:", dsid
+        print "looking at dataset with dsid:", dsid
 
-        title = fnames[0].replace('/', '_').replace('.', '_')
+        title = str(dsid)
         chain = ROOT.TChain(dconfig["tree_name"])
         friend_chains = []
         if "friend_tree_names" in dconfig:
@@ -121,9 +120,9 @@ def main(myargv):
                         % (dconfig["weight_tree_name"], fname)
                 exit(-1)
 
-            for iEvt in range(tweights.GetEntriesFast()):
-                tweights.GetEntry(iEvt)
-                nevt += tweights.totalEventsWeighted
+            htmp = ROOT.TH1F("htmp", "htmp", 1, 0, 10)
+            tweights.Project("htmp", "1", "totalEventsWeighted")
+            nevt += htmp.Integral()
 
             print "nevt so far:", nevt
 

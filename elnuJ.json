@@ -8,12 +8,14 @@
     "cuts" : {
         "elnuJ" : "elnuJ",
         "ljetPt300" : "ljet_pt[0] > 300000",
+        "trigMatch" : "(el_trigMatch_HLT_e60_lhmedium[0] || el_trigMatch_HLT_e24_lhmedium_L1EM18VH[0] || el_trigMatch_HLT_e120_lhloose[0])",
 
-        "elnuJ300" : ["elnuJ", "ljetPt300"]
+        "elnuJTrigMatch300" : ["elnuJ", "trigMatch", "ljetPt300"],
+        "elnuJTrigMatch" : ["elnuJ", "trigMatch"]
     },
 
     "runs" : [
-        ["elnuJ.root", "elnuJ"],
-        ["elnuJ300.root", "elnuJ300"]
+        ["elnuJ.root", "elnuJTrigMatch"],
+        ["elnuJ300.root", "elnuJTrigMatch300"]
     ]
 }
